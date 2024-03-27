@@ -26,7 +26,7 @@
             <div class="ms1"><div class="dele rowms"><p>luij</p></div><div class="undo"><p class="msg1">well well well</p></div></div> <br>
         </div>
         <div class='chat-input'>
-            <form method='post' id='chat-form' action="get_send.php" onsubmit="event.preventDefault();">
+            <form method='post' id='chat-form'>
                 <?php
                 $conn = mysqli_connect('localhost', 'root', '', 'stchat' );
                 require_once 'get_send.php';
@@ -39,23 +39,18 @@
     <script src="jquery-3.7.1.min.js"> </script>
     <script>
 
-        $(document).ready(function(){
-            $("#chat-form").on('submit', function(event) {
+        $(function() {
+
+            $.ajaxSetup({
+                cache: false
+            });
+
+            var url = "get_send.php";
+
+            $(".chat-formsubmit").click(function(event) {
                 event.preventDefault();
-                $.ajax({
-                    type: 'POST',
-                    url: 'get_send.php',
-                    data: new FormData(this),
-                    processData: false,
-                    contentType: "application/json",
-                    success: function (data) {
-                        let ch_win = $('.cmas');
-                      console.log(data)
-                    },
-                    error: function (xhr) {
-                        console.log('Network error occurred.');
-                    }
-                });
+                $(".cmas").html("").load(url);
+
             });
         });
     </script>
