@@ -1,8 +1,6 @@
 <?php
 session_start();
 $conn = mysqli_connect('localhost', 'root', '', 'stchat' );
-
-
 $name = 'kel';
 
 function load($conn) {
@@ -14,12 +12,9 @@ function load($conn) {
         $echos .= '<div class="ms1">' . '<div class="dele rowms"><p>' . $name . '</p></div>' . '<div class="undo"><p class="msg1">' . $msg . '</p></div>' . '</div> <br>';
 
     }
-
-
     echo $echos;
 
 }
-load($conn);
 function send($conn)
 {
 
@@ -35,12 +30,9 @@ function send($conn)
 
         header('Location: mess_chat.php');
 
-
     }
 
-
 }
-
 send($conn);
 
 ?>
